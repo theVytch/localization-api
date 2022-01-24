@@ -25,4 +25,8 @@ public class CidadeService {
         Optional<Cidade> cidade = cidadeRepository.findById(id);
         return cidade.orElseThrow(IllegalStateException::new);
     }
+
+    public List<Cidade> findByNome(String nome){
+        return cidadeRepository.findByNome(nome);
+    }
 }

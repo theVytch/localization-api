@@ -30,4 +30,11 @@ public class CidadeController {
         Cidade cidade = cidadeService.findById(id);
         return ResponseEntity.ok().body(cidade);
     }
+
+    @GetMapping("/filter")
+    public ResponseEntity<List<CidadeDto>> findByNome(@RequestParam("nome") String nome){
+        List<Cidade> listCidade = cidadeService.findByNome(nome);
+        List<CidadeDto> listCidadeDto = listCidade.stream().map(CidadeDto::new).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listCidadeDto);
+    }
 }

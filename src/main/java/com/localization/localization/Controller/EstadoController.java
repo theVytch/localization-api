@@ -1,6 +1,8 @@
 package com.localization.localization.Controller;
 
+import com.localization.localization.Dto.CidadeDto;
 import com.localization.localization.Dto.EstadoDto;
+import com.localization.localization.Entities.Cidade;
 import com.localization.localization.Entities.Estado;
 import com.localization.localization.Services.EstadoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,4 +33,10 @@ public class EstadoController {
         return ResponseEntity.ok().body(estado);
     }
 
+    @GetMapping("/filter")
+    public ResponseEntity<List<EstadoDto>> findByName(@RequestParam("nome") String name){
+        List<Estado> listEstado = estadoService.findByNomeEstado(name);
+        List<EstadoDto> listEstadoDto = listEstado.stream().map(EstadoDto::new).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listEstadoDto);
+    }
 }

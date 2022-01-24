@@ -1,6 +1,5 @@
 package com.localization.localization.Services;
 
-import com.localization.localization.Entities.Cidade;
 import com.localization.localization.Entities.Estado;
 import com.localization.localization.Repositories.EstadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +24,9 @@ public class EstadoService {
     public Estado findById(Long id){
         Optional<Estado> estado = estadoRepository.findById(id);
         return estado.orElseThrow(IllegalStateException::new);
+    }
+
+    public List<Estado> findByNomeEstado(String name){
+        return estadoRepository.findByNomeEstado(name);
     }
 }

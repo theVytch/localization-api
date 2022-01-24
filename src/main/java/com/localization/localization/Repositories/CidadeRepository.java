@@ -13,4 +13,6 @@ public interface CidadeRepository extends JpaRepository<Cidade, Long> {
 
     @Query("SELECT obj FROM cidade obj WHERE obj.estado.codEstado = :id_est ORDER BY nom_cidade")
     List<Cidade> findAllByEstado(@Param(value = "id_est") Long id_est);
+
+    List<Cidade> findByNome(String nome);
 }
